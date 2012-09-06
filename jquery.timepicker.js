@@ -258,7 +258,8 @@ requires jQuery 1.6+
 			end += _ONE_DAY;
 		}
 
-		for (var i=start; i <= end; i += settings.step*60) {
+		var i;
+		for (i = start; i <= end; i += settings.step*60) {
 			var timeInt = i%_ONE_DAY;
 			var row = $('<li />');
 			row.data('time', timeInt)
@@ -271,6 +272,12 @@ requires jQuery 1.6+
 				row.append(duration)
 			}
 
+			list.append(row);
+		}
+		if(i!=end){
+			var row = $('<li />');
+			row.data('time', end)
+			row.text(_int2time(end, settings.timeFormat));
 			list.append(row);
 		}
 
